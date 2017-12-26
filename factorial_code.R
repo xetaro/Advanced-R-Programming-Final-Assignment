@@ -58,8 +58,7 @@ factorial_reduce <-function(n) {
 factorial_func <- function(n) {if(n <= 0) 1 else n * factorial_func(n-1) }
 
 
-# 4. Factorial_mem: a version that uses memorization to compute the factorial.??????????????????????
-
+# 4. Factorial_mem: 
 res <- c(1, rep(NA,100))
 factorial_mem <- function(n) {
   
@@ -88,7 +87,6 @@ microbenchmark_results <- map(c(5,10,20,30,40,50,100),time_test)
 
 names(microbenchmark_results) <- as.character(c(5,10,20,30,40,50,100))
 microbenchmark_results
-# Set output to text file with title
 
 sink()
 

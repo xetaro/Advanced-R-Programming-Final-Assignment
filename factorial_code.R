@@ -72,21 +72,24 @@ factorial_mem <- function(n) {
   return(res[n])
 }
 
+# Performance of 4 functions with microbenchmark:
 
-# Perforamnce of individual input values with microbenchmark
-
-sink("factorial_output.txt")
-cat("results of microbenchmark tests\n")
+# We use the microbenchmark package to time the operation of 4 functions and
+# provide a summary of their performance. 
 
 time_test <- function(n) {
   microbenchmark(factorial_loop(n), factorial_reduce(n), factorial_func(n), factorial_mem(n))
 }
 
 
-microbenchmark_results <- map(c(5,10,20,30,40,50,100),time_test)
+microbenchmark_results <- map(seq(from = 5, to = 60, by = 10),time_test)
+names(microbenchmark_results) <- as.character(seq(from = 5, to = 60, by = 10))
 
-names(microbenchmark_results) <- as.character(c(5,10,20,30,40,50,100))
+sink("factorial_output.txt") # Send R Output to a File
+
+cat("results of microbenchmark tests\n")
 microbenchmark_results
 
 sink()
+
 
